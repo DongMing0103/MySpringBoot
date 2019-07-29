@@ -40,6 +40,21 @@ public class JFTestController {
 
     /**
      * @author dongm
+     * @Description：根据vo查询数据
+     * @date：2019/7/29 11:44
+     * @param:
+     */
+    @RequestMapping("/query")
+    public String query(JFTestVo vo) {
+        System.out.println("query Husike");
+        Integer id = vo.getId();
+        JFTest jfTest = ijfTestService.selectById(id);
+        System.out.println("查询数据为：" + jfTest);
+        return "Query Husike: " + jfTest;
+    }
+
+    /**
+     * @author dongm
      * @Description： 增加数据
      * @date：2019/7/26 17:32
      * @param:
