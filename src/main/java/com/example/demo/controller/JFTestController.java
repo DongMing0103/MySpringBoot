@@ -70,9 +70,15 @@ public class JFTestController {
     @RequestMapping("/queryPage")
     public Page<JFTest> queryPage(JFTestVo vo) {
         System.out.println("queryPage Husike");
-        Page<JFTest> page = ijfTestService.selectPageByVo(vo);
-        System.out.println("分页查询数据为：" + page);
-        return page;
+        // 根据vo查询
+        Page<JFTest> PageVo = ijfTestService.selectPageByVo(vo);
+        System.out.println("分页查询vo数据为：" + PageVo);
+
+        // 根据实体查询
+        Page<JFTest> testPage = new Page<>();
+        Page<JFTest> PagePo = ijfTestService.selectPage(testPage);
+        System.out.println("分页查询po数据为：" + PagePo);
+        return PageVo;
     }
 
     /**
