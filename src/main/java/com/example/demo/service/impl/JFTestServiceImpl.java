@@ -1,5 +1,6 @@
 package com.example.demo.service.impl;
 
+import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.example.demo.entity.po.JFTest;
 import com.example.demo.entity.vo.JFTestVo;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * <p>
@@ -76,5 +78,20 @@ public class JFTestServiceImpl extends ServiceImpl<JFTestMapper, JFTest> impleme
         jfTest.setDelFlag(Long.valueOf("1"));
         Integer in = jfTestMapper.updateById(jfTest);
         System.out.println("逻辑删除个数：" + in);
+    }
+
+    /**
+     * @author dongm
+     * @Description：分页查询
+     * @date：2019/7/29 15:54
+     * @param:
+     */
+    @Override
+    public Page<JFTest> selectPageByVo(JFTestVo vo) {
+        Page<JFTest> page = new Page<>(vo.getCurrent(), vo.getSize());
+        List<JFTest> list = jfTestMapper.selectPageByVo(page, vo);
+        page.setRecords(list);
+        System.out.println("page ======= " + page);
+        return page;
     }
 }
