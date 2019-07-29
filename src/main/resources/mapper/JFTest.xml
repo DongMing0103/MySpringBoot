@@ -4,19 +4,30 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.example.demo.entity.po.JFTest">
-        <id column="id" property="id" />
-        <result column="name" property="name" />
-        <result column="password" property="password" />
-        <result column="sex" property="sex" />
-        <result column="status" property="status" />
-        <result column="count" property="count" />
-        <result column="create_time" property="createTime" />
-        <result column="del_flag" property="delFlag" />
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="password" property="password"/>
+        <result column="sex" property="sex"/>
+        <result column="status" property="status"/>
+        <result column="count" property="count"/>
+        <result column="create_time" property="createTime"/>
+        <result column="del_flag" property="delFlag"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
         id, name, password, sex, status, count, create_time, del_flag
     </sql>
+
+    <!-- 根据vo查询分页 -->
+    <select id="selectPageByVo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from JFTest where 1 = 1
+        <if test="@Ognl@isNotEmpty(delFlag)">
+            and del_flag = #{delFlag}
+        </if>
+        order by create_time desc
+    </select>
 
 </mapper>
