@@ -3,6 +3,7 @@ package com.example.demo.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.plugins.Page;
 import com.example.demo.entity.po.JFTest;
 import com.example.demo.entity.vo.JFTestVo;
 import com.example.demo.service.IJFTestService;
@@ -58,6 +59,20 @@ public class JFTestController {
         JFTest jfTest = ijfTestService.selectById(id);
         System.out.println("查询数据为：" + jfTest);
         return "Query Husike: " + jfTest;
+    }
+
+    /**
+     * @author dongm
+     * @Description：分页查询
+     * @date：2019/7/29 16:10
+     * @param:
+     */
+    @RequestMapping("/queryPage")
+    public Page<JFTest> queryPage(JFTestVo vo) {
+        System.out.println("queryPage Husike");
+        Page<JFTest> page = ijfTestService.selectPageByVo(vo);
+        System.out.println("分页查询数据为：" + page);
+        return page;
     }
 
     /**
