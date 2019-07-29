@@ -1,12 +1,16 @@
 package com.example.demo.controller;
 
 
+import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.example.demo.entity.po.JFTest;
 import com.example.demo.entity.vo.JFTestVo;
 import com.example.demo.service.IJFTestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * <p>
@@ -33,9 +37,12 @@ public class JFTestController {
     @RequestMapping("/index")
     public String index() {
         System.out.println("Hello Husike");
-        JFTest jfTest = ijfTestService.selectById(1);
-        System.out.println("jfTest ===== " + jfTest);
-        return "Hello Husike：" + jfTest;
+        JFTest test = new JFTest();
+        JSONObject obj = new JSONObject();
+        List<JFTest> list = ijfTestService.selectList(new EntityWrapper<>(test));
+        obj.put("list",list);
+        System.out.println("jfTest ===== " + obj);
+        return "Hello Husike：" + obj;
     }
 
     /**
