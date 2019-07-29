@@ -11,7 +11,7 @@ import java.util.Date;
  * @Date 2019/7/26 17:39
  */
 @Data
-public class JFTestVo {
+public class JFTestVo extends PageVo{
 
     public Integer id;
     /**
