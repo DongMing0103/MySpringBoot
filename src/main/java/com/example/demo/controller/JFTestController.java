@@ -6,11 +6,14 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.example.demo.entity.po.JFTest;
 import com.example.demo.entity.vo.JFTestVo;
+import com.example.demo.enums.EnumStatusType;
 import com.example.demo.service.IJFTestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -70,9 +73,14 @@ public class JFTestController {
     @RequestMapping("/queryPage")
     public Page<JFTest> queryPage(JFTestVo vo) {
         System.out.println("queryPage Husike");
-        // 根据vo查询
-        Page<JFTest> PageVo = ijfTestService.selectPageByVo(vo);
-        System.out.println("分页查询vo数据为：" + PageVo);
+        Page<JFTest> PageVo = new Page<JFTest>();
+
+        // 条件判断，当状态可用时，进行数据查询
+        if (EnumStatusType.AVAILABLE.getValue().equals(vo.getStatus())) {
+            // 根据vo查询
+            PageVo = ijfTestService.selectPageByVo(vo);
+            System.out.println("分页查询vo数据为：" + PageVo);
+        }
 
         // 根据实体查询
         Page<JFTest> testPage = new Page<>();
@@ -120,6 +128,16 @@ public class JFTestController {
 //        System.out.println("物理删除数据~~~~");
         ijfTestService.delete(vo);
         System.out.println("逻辑删除数据~~~~");
+    }
+
+    public static void main(String[] args) {
+        String s = "1111";
+        StringBuffer stringBuffer = new StringBuffer();
+        StringBuilder stringBuilder = new StringBuilder();
+
+        // 数组转为list集合
+        ArrayList<String> list = new ArrayList<>(Arrays.asList("a", "b", "c"));
+
     }
 }
 
