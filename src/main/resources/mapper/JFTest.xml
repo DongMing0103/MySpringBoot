@@ -27,6 +27,9 @@
         <if test="@Ognl@isNotEmpty(delFlag)">
             and del_flag = #{delFlag}
         </if>
+        <if test="@Ognl@isNotEmpty(status)">
+            and status = #{status}
+        </if>
         order by create_time desc
     </select>
 
