@@ -4,10 +4,12 @@ import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.example.demo.entity.po.JFTest;
 import com.example.demo.entity.vo.JFTestVo;
+import com.example.demo.exception.BusinessException;
 import com.example.demo.mapper.JFTestMapper;
 import com.example.demo.service.IJFTestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.Date;
 import java.util.List;
@@ -33,7 +35,7 @@ public class JFTestServiceImpl extends ServiceImpl<JFTestMapper, JFTest> impleme
      * @param:
      */
     @Override
-    public void save(JFTestVo vo) {
+    public void save(JFTestVo vo) throws BusinessException {
         JFTest jfTest = new JFTest();
         jfTest.setName(vo.getName());
         jfTest.setCount(vo.getCount());
@@ -87,9 +89,12 @@ public class JFTestServiceImpl extends ServiceImpl<JFTestMapper, JFTest> impleme
      * @param:
      */
     @Override
-    public Page<JFTest> selectPageByVo(JFTestVo vo) {
+    public Page<JFTest> selectPageByVo(JFTestVo vo) throws BusinessException{
         Page<JFTest> page = new Page<>(vo.getCurrent(), vo.getSize());
         List<JFTest> list = jfTestMapper.selectPageByVo(page, vo);
+        if (StringUtils.isEmpty(list)) {
+            throw new BusinessException(BusinessException.CODE_DATA_EMPTY,BusinessException.MSG_DATA_EMPTY);
+        }
         page.setRecords(list);
         System.out.println("page ======= " + page);
         return page;
