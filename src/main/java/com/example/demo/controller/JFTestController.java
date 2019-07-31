@@ -35,11 +35,11 @@ public class JFTestController {
     private IJFTestService ijfTestService;
 
     /**
+     * @return
      * @author dongm
      * @Description： 数据查询
      * @date：2019/7/26 17:18
      * @param:
-     * @return
      */
     @RequestMapping("/index")
     public ResultMsg index() {
@@ -47,9 +47,9 @@ public class JFTestController {
         JFTest test = new JFTest();
         JSONObject obj = new JSONObject();
         List<JFTest> list = ijfTestService.selectList(new EntityWrapper<>(test));
-        obj.put("list",list);
+        obj.put("list", list);
         System.out.println("jfTest ===== " + obj);
-        return new ResultMsg(ResultMsg.CODE_SUCCESS,ResultMsg.MSG_SUCCESS,obj);
+        return new ResultMsg(ResultMsg.CODE_SUCCESS, ResultMsg.MSG_SUCCESS, obj);
     }
 
     /**
@@ -64,7 +64,7 @@ public class JFTestController {
         Integer id = vo.getId();
         JFTest jfTest = ijfTestService.selectById(id);
         System.out.println("查询数据为：" + jfTest);
-        return new ResultMsg(ResultMsg.CODE_SUCCESS,ResultMsg.MSG_SUCCESS,jfTest);
+        return new ResultMsg(ResultMsg.CODE_SUCCESS, ResultMsg.MSG_SUCCESS, jfTest);
     }
 
     /**

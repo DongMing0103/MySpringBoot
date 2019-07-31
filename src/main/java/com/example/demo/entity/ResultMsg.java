@@ -26,7 +26,8 @@ public class ResultMsg {
         map.put(CODE_SUCCESS, MSG_SUCCESS);
         map.put(CODE_ERROR, MSG_ERROR);
     }
-    public static final ResultMsg ERROR   = new ResultMsg(ResultMsg.CODE_ERROR);
+
+    public static final ResultMsg ERROR = new ResultMsg(ResultMsg.CODE_ERROR);
 
     public static final ResultMsg SUCCESS = new ResultMsg(ResultMsg.CODE_SUCCESS);
 
@@ -44,10 +45,12 @@ public class ResultMsg {
         this.msg = getMsgByCode(code);
         this.data = data;
     }
+
     public ResultMsg(String code, String msg) {
         this.code = code;
         this.msg = msg;
     }
+
     public ResultMsg(String code, String msg, Object data) {
         this.code = code;
         this.msg = msg;

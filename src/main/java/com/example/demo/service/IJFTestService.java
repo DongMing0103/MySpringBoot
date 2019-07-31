@@ -8,7 +8,7 @@ import com.example.demo.exception.BusinessException;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author dongm
@@ -16,7 +16,10 @@ import com.example.demo.exception.BusinessException;
  */
 public interface IJFTestService extends IService<JFTest> {
     void save(JFTestVo vo) throws BusinessException;
-    void update (JFTestVo vo);
-    void delete (JFTestVo vo);
+
+    void update(JFTestVo vo);
+
+    void delete(JFTestVo vo);
+
     Page<JFTest> selectPageByVo(JFTestVo vo) throws BusinessException;
 }

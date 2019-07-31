@@ -89,11 +89,11 @@ public class JFTestServiceImpl extends ServiceImpl<JFTestMapper, JFTest> impleme
      * @param:
      */
     @Override
-    public Page<JFTest> selectPageByVo(JFTestVo vo) throws BusinessException{
+    public Page<JFTest> selectPageByVo(JFTestVo vo) throws BusinessException {
         Page<JFTest> page = new Page<>(vo.getCurrent(), vo.getSize());
         List<JFTest> list = jfTestMapper.selectPageByVo(page, vo);
         if (StringUtils.isEmpty(list)) {
-            throw new BusinessException(BusinessException.CODE_DATA_EMPTY,BusinessException.MSG_DATA_EMPTY);
+            throw new BusinessException(BusinessException.CODE_DATA_EMPTY, BusinessException.MSG_DATA_EMPTY);
         }
         page.setRecords(list);
         System.out.println("page ======= " + page);
