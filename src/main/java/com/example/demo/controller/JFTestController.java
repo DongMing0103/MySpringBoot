@@ -14,9 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * <p>
@@ -138,9 +137,27 @@ public class JFTestController {
         StringBuffer stringBuffer = new StringBuffer();
         StringBuilder stringBuilder = new StringBuilder();
 
-        // 数组转为list集合
+        // 数组转为list集合， ArrayList底层object数组
         ArrayList<String> list = new ArrayList<>(Arrays.asList("a", "b", "c"));
+        // LinkedList 底层双向链表
+        LinkedList<Object> linkedList = new LinkedList<>();
 
+        // HashMap非线程安全
+        HashMap<Object, Object> map = new HashMap<>();
+        map.put("1","1");
+
+        HashSet<Object> set = new HashSet<>();
+
+        // ConcurrentHashMap线程安全
+        ConcurrentHashMap<Object, Object> hashMap = new ConcurrentHashMap<>();
+
+        // java 8 特性
+        List<String> names = Arrays.asList("peter", "anna", "mike", "xenia");
+        System.out.println("before sort ====== " + names);
+        Collections.sort(names, (String a,String b) -> b.compareTo(a));
+        System.out.println("after sort =====" + names);
+
+//        Queue
     }
 }
 
