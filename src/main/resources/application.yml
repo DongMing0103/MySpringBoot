@@ -1,34 +1,3 @@
-server:
-  port: 8081
-  servlet:
-    context-path: /
 spring:
-  application:
-    name: MySpringBoot
-  datasource:
-    url: jdbc:mysql://60.190.249.111:3306/JFTest?autoReconnect=true&useSSL=false
-    username: root
-    password: Xcbkj123456
-    driver-class-name: com.mysql.jdbc.Driver
-#
-mybatis-plus:
-  # MyBatis Mapper 所对应的 XML 文件位置，如果您在 Mapper 中有自定义方法(XML 中有自定义实现)，需要进行该配置，告诉 Mapper 所对应的 XML 文件位置
-  mapper-locations: classpath:/mapper/*.xml
-  # MyBaits 别名包扫描路径，通过该属性可以给包中的类注册别名，注册后在 Mapper 对应的 XML 文件中可以直接使用类名，而不用使用全限定的类名(即 XML 中调用的时候不用包含包名)
-  type-aliases-package: com.example.demo.entity.po
-  # MyBatis-Plus 全局策略配置
-  global-config:
-    # 主键类型 AUTO:"数据库ID自增", INPUT:"用户输入ID",ID_WORKER:"全局唯一ID (数字类型唯一ID)", UUID:"全局唯一ID UUID";
-    id-type: 3
-    # 字段策略 IGNORED:"忽略判断",NOT_NULL:"非 NULL 判断"),NOT_EMPTY:"非空判断"
-    field-strategy: 2
-    #
-    db-column-underline: true
-    # 是否动态刷新mapper，生产环境不建议使用
-    refresh-mapper: true
-  # 原生 MyBatis 所支持的配置
-  configuration:
-    # 开启驼峰命名
-    map-underscore-to-camel-case: true
-    #
-    cache-enabled: false
+  profiles:
+    active: dev
