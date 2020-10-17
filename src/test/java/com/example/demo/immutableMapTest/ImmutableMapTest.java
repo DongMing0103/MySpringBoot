@@ -1,5 +1,6 @@
 package com.example.demo.immutableMapTest;
 
+import com.google.common.collect.ImmutableMap;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,7 +15,7 @@ public class ImmutableMapTest {
 
   public static class ConstantMap {
     static Map<Integer, String> INTEGER_STRING_MAP =
-        new com.google.common.collect.ImmutableMap.Builder<Integer, String>()
+        new ImmutableMap.Builder<Integer, String>()
             .put(30, "IP地址或地址段")
             .put(31, "端口号或范围")
             .put(32, "IP地址或地址段")
