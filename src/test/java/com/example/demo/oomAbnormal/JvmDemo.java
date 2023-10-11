@@ -90,13 +90,13 @@ public class JvmDemo {
             list.add(str);
             flag++;
         }
-        System.out.println("xunhuanzhixingwanbi...");
+        System.out.println("循环执行完毕...");
         try {
             Thread.sleep(2000L);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println("neicungaofuzai......");
+        System.out.println("内存高负载......");
         try {
             Thread.sleep(86400000L*30);
         } catch (InterruptedException e) {
